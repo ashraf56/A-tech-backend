@@ -12,24 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable no-console */
-const mongoose_1 = __importDefault(require("mongoose"));
-const app_1 = __importDefault(require("./app"));
-const config_1 = __importDefault(require("./app/config/config"));
-const seed_1 = __importDefault(require("./app/utills/seed"));
-function mainEngine() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield mongoose_1.default.connect(`${config_1.default.Database_url}`);
-            console.log(' Database connected successfully');
-            (0, seed_1.default)();
-            app_1.default.listen(config_1.default.PORT, () => {
-                console.log(` this server is listening on Port ${config_1.default.PORT}`);
-            });
-        }
-        catch (error) {
-            console.log(error);
-        }
-    });
-}
-mainEngine();
+const config_1 = __importDefault(require("../config/config"));
+const user_model_1 = require("../module/user/user.model");
+const Admin = {
+    name: "fahim",
+    email: "f@gmail.com",
+    role: "admin",
+    password: config_1.default.AdminPass,
+    profile: "https://example.com/profile.jpg",
+    address: "1234 Elm Street, Springfield, USA"
+};
+const AdminDefault = () => __awaiter(void 0, void 0, void 0, function* () {
+    const isAdminexist = yield user_model_1.User.findOne({ role: Admin.role });
+    if (!isAdminexist) {
+        yield user_model_1.User.create(Admin);
+    }
+});
+exports.default = AdminDefault;
