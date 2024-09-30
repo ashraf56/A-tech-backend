@@ -48,8 +48,19 @@ const updateUserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =
         data: result,
     });
 }));
+const SingleUserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield user_service_1.UsersService.SingleUserDB(id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "User info rettrived successfully",
+        data: result,
+    });
+}));
 exports.UserControllers = {
     RegisterUserController,
     LoginUserController,
-    updateUserController
+    updateUserController,
+    SingleUserController
 };

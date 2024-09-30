@@ -47,8 +47,13 @@ const updateUserDB = (id, payload) => __awaiter(void 0, void 0, void 0, function
     const result = yield user_model_1.User.findByIdAndUpdate({ _id: id }, payload, { new: true });
     return result;
 });
+const SingleUserDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.User.findById(id);
+    return result;
+});
 exports.UsersService = {
     RegisterUserDB,
     logIn,
-    updateUserDB
+    updateUserDB,
+    SingleUserDB
 };

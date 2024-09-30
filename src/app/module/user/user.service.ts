@@ -54,8 +54,17 @@ const updateUserDB = async (id: string, payload: Partial<UserInterface>) => {
 }
 
 
+const SingleUserDB = async (id: string) => {
+
+    const result = await User.findById(id)
+    return result
+
+}
+
+
 export const UsersService = {
     RegisterUserDB,
     logIn,
-    updateUserDB
+    updateUserDB,
+    SingleUserDB
 }

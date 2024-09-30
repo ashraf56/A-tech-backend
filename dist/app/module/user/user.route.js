@@ -11,6 +11,7 @@ const validateRequest_1 = __importDefault(require("../../middleware/validateRequ
 const authMiddleware_1 = __importDefault(require("../../middleware/authMiddleware"));
 const router = (0, express_1.Router)();
 router.post('/signup', (0, validateRequest_1.default)(user_validation_1.UserValidations.createUservalidationSchema), user_controller_1.UserControllers.RegisterUserController);
+router.get('/:id', (0, authMiddleware_1.default)('admin', 'user'), user_controller_1.UserControllers.SingleUserController);
 router.put('/:id', (0, authMiddleware_1.default)('admin', 'user'), user_controller_1.UserControllers.updateUserController);
 router.post('/login', (0, validateRequest_1.default)(user_validation_1.UserValidations.LoginvalidationSchema), user_controller_1.UserControllers.LoginUserController);
 exports.userRoutes = router;

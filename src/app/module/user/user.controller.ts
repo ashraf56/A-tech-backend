@@ -44,6 +44,21 @@ const updateUserController = tryCatchWrapper(
         })
     }
 )
+const SingleUserController = tryCatchWrapper(
+    async (req, res) => {
+
+        const { id } = req.params
+        const result = await UsersService.SingleUserDB(id)
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "User info rettrived successfully",
+            data: result,
+
+        })
+    }
+)
 
 
 
@@ -51,5 +66,6 @@ const updateUserController = tryCatchWrapper(
 export const UserControllers = {
     RegisterUserController,
     LoginUserController,
-    updateUserController
+    updateUserController,
+    SingleUserController
 }
