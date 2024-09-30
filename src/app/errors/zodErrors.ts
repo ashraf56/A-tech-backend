@@ -1,7 +1,7 @@
 import { ZodError, ZodIssue } from "zod";
 import { Errorsource, GenericErrorResponse } from "../random_Interface/terrorsource";
 
-const zodValidateErrors = (error: ZodError): GenericErrorResponse => {
+const zodErrors = (error: ZodError): GenericErrorResponse => {
     const errorSource: Errorsource = error.issues.map((i: ZodIssue) => {
         return {
             // finding last index from path
@@ -23,4 +23,4 @@ const zodValidateErrors = (error: ZodError): GenericErrorResponse => {
 }
 
 
-export default zodValidateErrors
+export default zodErrors
