@@ -22,11 +22,26 @@ const PostCreateSchema = z.object({
 
 
 })
+const PostUpdateSchema = z.object({
+    body: z.object({
+
+        title: z.string().optional(),
+        image: z.string().optional(),
+        description: z.string().optional(),
+        subtitle: z.string().optional(),
+        category: z.string().optional(),
+        postType: z.string().optional(),
+        comments: z.array(commentSchema).optional(),
+    })
+
+
+})
 
 
 
 
 
 export const PostValidation = {
-    PostCreateSchema
+    PostCreateSchema,
+    PostUpdateSchema
 }

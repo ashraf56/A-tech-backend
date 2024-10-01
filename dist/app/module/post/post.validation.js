@@ -18,6 +18,18 @@ const PostCreateSchema = zod_1.z.object({
         comments: zod_1.z.array(commentSchema).optional(),
     })
 });
+const PostUpdateSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        title: zod_1.z.string().optional(),
+        image: zod_1.z.string().optional(),
+        description: zod_1.z.string().optional(),
+        subtitle: zod_1.z.string().optional(),
+        category: zod_1.z.string().optional(),
+        postType: zod_1.z.string().optional(),
+        comments: zod_1.z.array(commentSchema).optional(),
+    })
+});
 exports.PostValidation = {
-    PostCreateSchema
+    PostCreateSchema,
+    PostUpdateSchema
 };
