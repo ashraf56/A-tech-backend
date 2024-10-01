@@ -9,7 +9,7 @@ const RegisterUserDB = async (payload: UserInterface) => {
     if (isUserexist) {
         return throwError('this  email already Registered')
     }
-    const createUser = User.create(payload)
+    const createUser = await User.create(payload)
     return createUser
 }
 

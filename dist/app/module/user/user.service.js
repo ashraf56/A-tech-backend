@@ -22,7 +22,7 @@ const RegisterUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* 
     if (isUserexist) {
         return (0, throwError_1.default)('this  email already Registered');
     }
-    const createUser = user_model_1.User.create(payload);
+    const createUser = yield user_model_1.User.create(payload);
     return createUser;
 });
 const logIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
