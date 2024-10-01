@@ -3,7 +3,7 @@ import { Types } from "mongoose";
 
 export type Comments = {
     userid: Types.ObjectId
-    content: string
+    content?: string
 }
 
 export interface PostInterface {
@@ -14,6 +14,6 @@ export interface PostInterface {
     subtitle:string
     category:Types.ObjectId
     postType: string
-    comments:Comments[]
+    comments?:Comments[]
 
 }

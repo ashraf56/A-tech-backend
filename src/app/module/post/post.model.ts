@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 import { Comments, PostInterface } from "./post.interface";
 const CommentsShcema = new Schema<Comments>({
     userid: { type: Schema.Types.ObjectId, ref: 'User' },
-    content: { type: String, required: true }
+    content: { type: String}
 })
 
 const PostSchema = new Schema<PostInterface>({

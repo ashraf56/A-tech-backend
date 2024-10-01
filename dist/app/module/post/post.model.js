@@ -4,7 +4,7 @@ exports.Post = void 0;
 const mongoose_1 = require("mongoose");
 const CommentsShcema = new mongoose_1.Schema({
     userid: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
-    content: { type: String, required: true }
+    content: { type: String }
 });
 const PostSchema = new mongoose_1.Schema({
     userID: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
