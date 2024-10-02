@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { startSession } from "mongoose";
 import { BlogInterface } from "./blog.interface";
 import { Blog } from "./blog.model";
 import throwError from "../../utills/throwError";
 import { User } from "../user/user.model";
 import { Category } from "../category/category.model";
+import QueryBuilder from "../../builder/QueryBuilder";
+import { SearchableFeilds } from "./blog.constant";
 
 const createBlogDB = async (payload: BlogInterface, user: string) => {
 
@@ -69,9 +72,13 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
 
 
-const getAllBlogsDB = async ()=>{
-    const result = await Blog.find()
-    return result
+const getAllBlogsDB = async (query:any)=>{
+
+  const allBLogs =new QueryBuilder(Blog.find().populate('category').populate('user'),query)
+  .search(SearchableFeilds).filter()
+
+  const result = await allBLogs.modelQuery
+return result
 } 
 
 

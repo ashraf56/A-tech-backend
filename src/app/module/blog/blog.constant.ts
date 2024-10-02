@@ -1,1 +1,1 @@
-export const SearchableFeilds = [ 'category']
+export const SearchableFeilds = [ 'title','subtitle']

@@ -20,7 +20,7 @@ const CreateBlogController = tryCatchWrapper(
 const GetallBlogsController = tryCatchWrapper(
     async (req, res) => {
        
-        const result = await Blogservices.getAllBlogsDB()
+        const result = await Blogservices.getAllBlogsDB(req.query)
 
 
         res.status(httpStatus.OK).json({

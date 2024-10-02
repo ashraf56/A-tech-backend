@@ -9,6 +9,7 @@ const router = Router()
 
 router.post('/create-blog', authMiddleware('user'), validateRequest(BlogValidation.BlogCreateSchema), 
 BlogControllers.CreateBlogController)
+
 router.get('/', BlogControllers.GetallBlogsController)
 
 

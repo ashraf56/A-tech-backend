@@ -43,4 +43,4 @@ UserSchema.statics.isMatchpass = async function name( inputPassword,hashpassword
 }
 
 
-export const User = model<UserInterface,Usermodels>('Users', UserSchema)
+export const User = model<UserInterface,Usermodels>('User', UserSchema)

@@ -51,4 +51,4 @@ UserSchema.statics.isMatchpass = function name(inputPassword, hashpassword) {
         return yield bcrypt_1.default.compare(inputPassword, hashpassword);
     });
 };
-exports.User = (0, mongoose_1.model)('Users', UserSchema);
+exports.User = (0, mongoose_1.model)('User', UserSchema);

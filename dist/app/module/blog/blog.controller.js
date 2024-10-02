@@ -27,7 +27,7 @@ const CreateBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =
     });
 }));
 const GetallBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield blog_service_1.Blogservices.getAllBlogsDB();
+    const result = yield blog_service_1.Blogservices.getAllBlogsDB(req.query);
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
