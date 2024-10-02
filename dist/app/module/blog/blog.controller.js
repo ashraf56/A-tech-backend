@@ -26,6 +26,16 @@ const CreateBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =
         data: result
     });
 }));
+const GetallBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_service_1.Blogservices.getAllBlogsDB();
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "Blogs retrived success",
+        data: result
+    });
+}));
 exports.BlogControllers = {
-    CreateBlogController
+    CreateBlogController,
+    GetallBlogsController
 };

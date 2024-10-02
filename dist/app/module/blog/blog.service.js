@@ -57,6 +57,11 @@ const createBlogDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
         (0, throwError_1.default)('Blog creation not success');
     }
 });
+const getAllBlogsDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_model_1.Blog.find();
+    return result;
+});
 exports.Blogservices = {
-    createBlogDB
+    createBlogDB,
+    getAllBlogsDB
 };

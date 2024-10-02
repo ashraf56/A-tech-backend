@@ -17,9 +17,25 @@ const CreateBlogController = tryCatchWrapper(
         })
     }
 )
+const GetallBlogsController = tryCatchWrapper(
+    async (req, res) => {
+       
+        const result = await Blogservices.getAllBlogsDB()
+
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "Blogs retrived success",
+            data: result
+        })
+    }
+)
+
 
 
 
 export const BlogControllers ={
-    CreateBlogController
+    CreateBlogController,
+    GetallBlogsController
 }

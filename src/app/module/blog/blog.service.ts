@@ -69,11 +69,15 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
 
 
-
+const getAllBlogsDB = async ()=>{
+    const result = await Blog.find()
+    return result
+} 
 
 
 
 
 export const Blogservices = {
-    createBlogDB
+    createBlogDB,
+    getAllBlogsDB
 }
