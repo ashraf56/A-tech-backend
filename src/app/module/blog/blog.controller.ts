@@ -1,17 +1,18 @@
 import httpStatus from "http-status";
 import { tryCatchWrapper } from "../../utills/tryCatchWrapper";
-import { Postservices } from "./post.service";
+import { Blogservices } from "./blog.service";
 
-const CreatePostController = tryCatchWrapper(
+const CreateBlogController = tryCatchWrapper(
     async (req, res) => {
         const payload = req.body;
-        const {id}=req.user
-        const result = await Postservices.createPostDB(payload,id)
+       
+        const result = await Blogservices.createBlogDB(payload,req.user.id)
+
 
         res.status(httpStatus.OK).json({
             success: true,
             statusCode: httpStatus.OK,
-            message: "Post Crated success",
+            message: "Blog Crated success",
             data: result
         })
     }
@@ -19,6 +20,6 @@ const CreatePostController = tryCatchWrapper(
 
 
 
-export const PostControllers ={
-    CreatePostController
+export const BlogControllers ={
+    CreateBlogController
 }

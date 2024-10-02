@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Postservices = void 0;
 const mongoose_1 = require("mongoose");
-const post_model_1 = require("./post.model");
+const blog_model_1 = require("./blog.model");
 const throwError_1 = __importDefault(require("../../utills/throwError"));
 const user_model_1 = require("../user/user.model");
 const category_model_1 = require("../category/category.model");
@@ -36,7 +36,7 @@ const createPostDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
     const session = yield (0, mongoose_1.startSession)();
     try {
         session.startTransaction();
-        const result = yield post_model_1.Post.create([newPostdata], { session });
+        const result = yield blog_model_1.Post.create([newPostdata], { session });
         if (!result) {
             (0, throwError_1.default)("Post creation faild");
         }
@@ -53,7 +53,7 @@ const createPostDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
         }
         yield session.commitTransaction();
         yield session.endSession();
-        const postdata = yield post_model_1.Post.findById(result[0]._id).populate('User').populate('Category');
+        const postdata = yield blog_model_1.Post.findById(result[0]._id).populate('User').populate('Category');
         return postdata;
     }
     catch (error) {

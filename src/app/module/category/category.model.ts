@@ -3,7 +3,7 @@ import { CategoryInterface } from "./category.interface";
 
 const CategorySchema = new Schema<CategoryInterface>({
     name: { type: String, required: true },
-    postCount:{type:String , default:'0'}
+    postCount:{type:Number , default:0}
 }, {
     timestamps: true
 })

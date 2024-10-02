@@ -4,7 +4,7 @@ exports.Category = void 0;
 const mongoose_1 = require("mongoose");
 const CategorySchema = new mongoose_1.Schema({
     name: { type: String, required: true },
-    postCount: { type: String, default: '0' }
+    postCount: { type: Number, default: 0 }
 }, {
     timestamps: true
 });

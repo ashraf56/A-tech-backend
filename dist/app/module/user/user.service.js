@@ -40,7 +40,7 @@ const logIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     };
     const token = jsonwebtoken_1.default.sign(tokenplayload, config_1.default.JWT_sec_Token, { expiresIn: '365D' });
     return {
-        token, users
+        users, token
     };
 });
 const updateUserDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {

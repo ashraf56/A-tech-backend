@@ -24,8 +24,8 @@ const LoginUserController = tryCatchWrapper(
             success: true,
             statusCode: httpStatus.OK,
             message: "Logged in successfully",
-            data: result.users,
-            token: result.token
+            data: result,
+            
         })
     }
 )

@@ -39,7 +39,7 @@ const logIn = async (payload: UserInterface) => {
 
 
     return {
-        token, users
+        users , token
     }
 
 }

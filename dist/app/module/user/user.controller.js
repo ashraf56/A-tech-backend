@@ -33,8 +33,7 @@ const LoginUserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =>
         success: true,
         statusCode: http_status_1.default.OK,
         message: "Logged in successfully",
-        data: result.users,
-        token: result.token
+        data: result,
     });
 }));
 const updateUserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

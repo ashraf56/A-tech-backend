@@ -12,21 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostControllers = void 0;
+exports.BlogControllers = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const tryCatchWrapper_1 = require("../../utills/tryCatchWrapper");
-const post_service_1 = require("./post.service");
-const CreatePostController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const blog_service_1 = require("./blog.service");
+const CreateBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
-    const result = yield post_service_1.Postservices.createPostDB(payload, req.user.id);
-    console.log(result);
+    const result = yield blog_service_1.Blogservices.createBlogDB(payload, req.user.id);
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Post Crated success",
+        message: "Blog Crated success",
         data: result
     });
 }));
-exports.PostControllers = {
-    CreatePostController
+exports.BlogControllers = {
+    CreateBlogController
 };

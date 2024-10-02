@@ -8,7 +8,7 @@ const commentSchema = z.object({
 });
 
 
-const PostCreateSchema = z.object({
+const BlogCreateSchema = z.object({
     body: z.object({
 
         title: z.string(),
@@ -16,13 +16,13 @@ const PostCreateSchema = z.object({
         description: z.string(),
         subtitle: z.string(),
         category: z.string(),
-        postType: z.string(),
+        blogType: z.string(),
         comments: z.array(commentSchema).optional(),
     })
 
 
 })
-const PostUpdateSchema = z.object({
+const BlogUpdateSchema = z.object({
     body: z.object({
 
         title: z.string().optional(),
@@ -30,7 +30,7 @@ const PostUpdateSchema = z.object({
         description: z.string().optional(),
         subtitle: z.string().optional(),
         category: z.string().optional(),
-        postType: z.string().optional(),
+        blogType: z.string().optional(),
         comments: z.array(commentSchema).optional(),
     })
 
@@ -41,7 +41,7 @@ const PostUpdateSchema = z.object({
 
 
 
-export const PostValidation = {
-    PostCreateSchema,
-    PostUpdateSchema
+export const BlogValidation = {
+    BlogCreateSchema,
+    BlogUpdateSchema
 }

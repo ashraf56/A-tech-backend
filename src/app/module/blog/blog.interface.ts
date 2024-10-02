@@ -6,14 +6,14 @@ export type Comments = {
     content?: string
 }
 
-export interface PostInterface {
-    userID:Types.ObjectId
+export interface BlogInterface {
+    user:Types.ObjectId
     title:string
     image:string
     description:string
     subtitle:string
     category:Types.ObjectId
-    postType: string
+    blogType: string
     comments?:Comments[]
 
 }

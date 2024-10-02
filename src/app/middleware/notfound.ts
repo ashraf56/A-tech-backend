@@ -5,9 +5,9 @@ import httpStatus from "http-status";
 
 const noRoutefound = ((req: Request, res: Response, next: NextFunction) => {
 
-    return res.status(httpStatus.OK).json({
+    return res.status(httpStatus.NOT_FOUND).json({
         success: false,
-        statusCode: 404,
+        statusCode: httpStatus.NOT_FOUND,
         message: "Not Found"
     })
 })
