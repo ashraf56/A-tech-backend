@@ -66,7 +66,39 @@ const getAllBlogsDB = (query) => __awaiter(void 0, void 0, void 0, function* () 
     const result = yield allBLogs.modelQuery;
     return result;
 });
+const commentPostDB = (payload, id, userid) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    if (!payload.comments || !Array.isArray(payload.comments)) {
+        (0, throwError_1.default)('No comments provided ');
+    }
+    const commentData = (_a = payload.comments) === null || _a === void 0 ? void 0 : _a.map(comment => ({
+        userid,
+        content: comment.content
+    }));
+    const postAcomment = yield blog_model_1.Blog.findByIdAndUpdate(id, {
+        $addToSet: {
+            comments: {
+                $each: commentData
+            }
+        }
+    }, { new: true });
+    if (!postAcomment) {
+        (0, throwError_1.default)('Blog post not found');
+    }
+    // Return the updated blog with comments
+    return postAcomment;
+});
+const DeleteCommentDB = (commentId, id) => __awaiter(void 0, void 0, void 0, function* () {
+    const removeComment = yield blog_model_1.Blog.findByIdAndUpdate(id, { $pull: { comments: { _id: commentId } } }, { new: true });
+    if (!removeComment) {
+        (0, throwError_1.default)('something error');
+    }
+    const result = yield blog_model_1.Blog.findById(id);
+    return result;
+});
 exports.Blogservices = {
     createBlogDB,
-    getAllBlogsDB
+    getAllBlogsDB,
+    commentPostDB,
+    DeleteCommentDB
 };

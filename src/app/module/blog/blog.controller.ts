@@ -32,10 +32,43 @@ const GetallBlogsController = tryCatchWrapper(
     }
 )
 
+const commentPostController = tryCatchWrapper(
+    async (req, res) => {
+        const { id } = req.params;
+        const data = req.body;
+        const result = await Blogservices.commentPostDB(data,id,req.user.id);
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "your comment successfully posted",
+            data: result
+        })
+
+    }
+)
+const commentDeleteController = tryCatchWrapper(
+    async (req, res) => {
+        const { id } = req.params;
+        const commentId = req.body;
+        
+        const result = await Blogservices.DeleteCommentDB(commentId,id);
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "your comment successfully deleted",
+            data: result
+        })
+
+    }
+)
 
 
 
 export const BlogControllers ={
     CreateBlogController,
-    GetallBlogsController
+    GetallBlogsController,
+    commentPostController,
+    commentDeleteController
 }

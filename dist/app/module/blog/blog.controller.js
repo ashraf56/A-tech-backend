@@ -35,7 +35,31 @@ const GetallBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) 
         data: result
     });
 }));
+const commentPostController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const data = req.body;
+    const result = yield blog_service_1.Blogservices.commentPostDB(data, id, req.user.id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "your comment successfully posted",
+        data: result
+    });
+}));
+const commentDeleteController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const commentId = req.body;
+    const result = yield blog_service_1.Blogservices.DeleteCommentDB(commentId, id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "your comment successfully deleted",
+        data: result
+    });
+}));
 exports.BlogControllers = {
     CreateBlogController,
-    GetallBlogsController
+    GetallBlogsController,
+    commentPostController,
+    commentDeleteController
 };

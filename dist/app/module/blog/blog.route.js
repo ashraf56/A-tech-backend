@@ -10,6 +10,8 @@ const authMiddleware_1 = __importDefault(require("../../middleware/authMiddlewar
 const blog_validation_1 = require("./blog.validation");
 const blog_controller_1 = require("./blog.controller");
 const router = (0, express_1.Router)();
+router.put('/:id', (0, authMiddleware_1.default)('user'), blog_controller_1.BlogControllers.commentPostController);
 router.post('/create-blog', (0, authMiddleware_1.default)('user'), (0, validateRequest_1.default)(blog_validation_1.BlogValidation.BlogCreateSchema), blog_controller_1.BlogControllers.CreateBlogController);
 router.get('/', blog_controller_1.BlogControllers.GetallBlogsController);
+router.patch('/:id', (0, authMiddleware_1.default)('user', 'admin'), blog_controller_1.BlogControllers.commentDeleteController);
 exports.blogRoutes = router;

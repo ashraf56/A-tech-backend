@@ -16,7 +16,7 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
     if (!userinfo) {
         return throwError('User not found')
     }
-    
+
     newBlogdata.title = payload.title
     newBlogdata.subtitle = payload.subtitle
     newBlogdata.description = payload.description
@@ -38,9 +38,9 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
         const BlogCategorycount = await Category.findByIdAndUpdate({ _id: payload.category },
             {
-               
-                    $inc: { postCount: 1 }
-              
+
+                $inc: { postCount: 1 }
+
             },
             {
                 new: true,
@@ -49,18 +49,18 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
         )
         if (!BlogCategorycount) {
             throwError("Blog creation faild")
-        } 
-        
-         
+        }
 
-        
+
+
+
 
         await session.commitTransaction()
         await session.endSession()
-       
-     
-        
-       return bloginfo
+
+
+
+        return bloginfo
 
     } catch (error) {
         await session.abortTransaction()
@@ -72,19 +72,68 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
 
 
-const getAllBlogsDB = async (query:any)=>{
+const getAllBlogsDB = async (query: any) => {
 
-  const allBLogs =new QueryBuilder(Blog.find().populate('category').populate('user'),query)
-  .search(SearchableFeilds).filter()
+    const allBLogs = new QueryBuilder(Blog.find().populate('category').populate('user'), query)
+        .search(SearchableFeilds).filter()
 
-  const result = await allBLogs.modelQuery
-return result
-} 
+    const result = await allBLogs.modelQuery
+    return result
+}
 
+const commentPostDB = async (payload: Partial<BlogInterface>, id: string, userid: string) => {
+
+    if (!payload.comments || !Array.isArray(payload.comments)) {
+        throwError('No comments provided ');
+    }
+
+    const commentData = payload.comments?.map(comment => ({
+        userid,
+        content: comment.content
+
+    }))
+
+    const postAcomment = await Blog.findByIdAndUpdate(
+        id,
+        {
+            $addToSet: {
+                comments: {
+                    $each: commentData
+                }
+            }
+        },
+        { new: true }
+    );
+
+    if (!postAcomment) {
+        throwError('Blog post not found');
+    }
+
+    // Return the updated blog with comments
+    return postAcomment;
+
+}
+const DeleteCommentDB = async (commentId: string, id: string) => {
+
+
+    const removeComment = await Blog.findByIdAndUpdate(id,
+        { $pull: { comments: { _id:commentId  } } }, { new: true }
+    )
+
+    if (!removeComment) {
+        throwError('something error')
+    }
+
+    const result = await Blog.findById(id)
+    return result
+
+}
 
 
 
 export const Blogservices = {
     createBlogDB,
-    getAllBlogsDB
+    getAllBlogsDB,
+    commentPostDB,
+    DeleteCommentDB
 }
