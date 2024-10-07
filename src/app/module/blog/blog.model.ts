@@ -11,6 +11,7 @@ const BlogSchema = new Schema<BlogInterface>({
     category: { type: Schema.Types.ObjectId, ref: "Category" },
     comments: [CommentsShcema],
     image: { type: String, required: true },
+    date: { type: String, required: true },
     blogType: { type: String, required: true, default: 'random' },
     subtitle: { type: String, required: true },
     title: { type: String, required: true }

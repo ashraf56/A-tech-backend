@@ -16,6 +16,7 @@ const BlogCreateSchema = z.object({
         description: z.string(),
         subtitle: z.string(),
         category: z.string(),
+        date: z.string(),
         blogType: z.string(),
         comments: z.array(commentSchema).optional(),
     })
@@ -31,6 +32,7 @@ const BlogUpdateSchema = z.object({
         subtitle: z.string().optional(),
         category: z.string().optional(),
         blogType: z.string().optional(),
+        date: z.string().optional(),
         comments: z.array(commentSchema).optional(),
     })
 

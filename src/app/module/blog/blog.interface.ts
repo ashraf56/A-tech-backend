@@ -11,6 +11,7 @@ export interface BlogInterface {
     title:string
     image:string
     description:string
+    date:string
     subtitle:string
     category:Types.ObjectId
     blogType: string

@@ -14,6 +14,7 @@ const BlogCreateSchema = zod_1.z.object({
         description: zod_1.z.string(),
         subtitle: zod_1.z.string(),
         category: zod_1.z.string(),
+        date: zod_1.z.string(),
         blogType: zod_1.z.string(),
         comments: zod_1.z.array(commentSchema).optional(),
     })
@@ -26,6 +27,7 @@ const BlogUpdateSchema = zod_1.z.object({
         subtitle: zod_1.z.string().optional(),
         category: zod_1.z.string().optional(),
         blogType: zod_1.z.string().optional(),
+        date: zod_1.z.string().optional(),
         comments: zod_1.z.array(commentSchema).optional(),
     })
 });
