@@ -29,6 +29,7 @@ const BlogUpdateSchema = zod_1.z.object({
         blogType: zod_1.z.string().optional(),
         date: zod_1.z.string().optional(),
         comments: zod_1.z.array(commentSchema).optional(),
+        upvote: zod_1.z.string().optional()
     })
 });
 exports.BlogValidation = {

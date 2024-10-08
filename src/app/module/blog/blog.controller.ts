@@ -7,9 +7,6 @@ const CreateBlogController = tryCatchWrapper(
         const payload = req.body;
         
         const result = await Blogservices.createBlogDB(payload,req.user.id)
-console.log(req.user.id);
-
-console.log({result});
 
         res.status(httpStatus.OK).json({
             success: true,
@@ -28,7 +25,21 @@ const GetallBlogsController = tryCatchWrapper(
         res.status(httpStatus.OK).json({
             success: true,
             statusCode: httpStatus.OK,
-            message: "Blogs retrived success",
+            message: "Blogs retrived successfully",
+            data: result
+        })
+    }
+)
+const GetSingleBlogsController = tryCatchWrapper(
+    async (req, res) => {
+       const {id}=req.params
+        const result = await Blogservices.getSingleBlogsDB(id)
+
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "Blog retrived successfully",
             data: result
         })
     }
@@ -72,5 +83,6 @@ export const BlogControllers ={
     CreateBlogController,
     GetallBlogsController,
     commentPostController,
-    commentDeleteController
+    commentDeleteController,
+    GetSingleBlogsController
 }

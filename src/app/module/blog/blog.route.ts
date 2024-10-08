@@ -14,7 +14,8 @@ BlogControllers.CreateBlogController)
 router.put('/:id' , authMiddleware('user'),BlogControllers.commentPostController)
 
 router.get('/', BlogControllers.GetallBlogsController)
-router.patch('/:id',authMiddleware('user','admin') , BlogControllers.commentDeleteController)
+router.get('/:id', BlogControllers.GetSingleBlogsController)
+router.delete('/:id',authMiddleware('user','admin') , BlogControllers.commentDeleteController)
 
 
 

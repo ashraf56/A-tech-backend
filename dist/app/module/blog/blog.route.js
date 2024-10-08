@@ -13,5 +13,6 @@ const router = (0, express_1.Router)();
 router.post('/create-blog', (0, authMiddleware_1.default)('user'), (0, validateRequest_1.default)(blog_validation_1.BlogValidation.BlogCreateSchema), blog_controller_1.BlogControllers.CreateBlogController);
 router.put('/:id', (0, authMiddleware_1.default)('user'), blog_controller_1.BlogControllers.commentPostController);
 router.get('/', blog_controller_1.BlogControllers.GetallBlogsController);
-router.patch('/:id', (0, authMiddleware_1.default)('user', 'admin'), blog_controller_1.BlogControllers.commentDeleteController);
+router.get('/:id', blog_controller_1.BlogControllers.GetSingleBlogsController);
+router.delete('/:id', (0, authMiddleware_1.default)('user', 'admin'), blog_controller_1.BlogControllers.commentDeleteController);
 exports.blogRoutes = router;

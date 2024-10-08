@@ -73,6 +73,10 @@ const getAllBlogsDB = (query) => __awaiter(void 0, void 0, void 0, function* () 
     const result = yield allBLogs.modelQuery;
     return result;
 });
+const getSingleBlogsDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_model_1.Blog.findById(id).populate('user').populate('category');
+    return result;
+});
 const commentPostDB = (payload, id, userid) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     if (!payload.comments || !Array.isArray(payload.comments)) {
@@ -103,9 +107,12 @@ const DeleteCommentDB = (commentId, id) => __awaiter(void 0, void 0, void 0, fun
     const result = yield blog_model_1.Blog.findById(id);
     return result;
 });
+// const Updateblogs = async (payload:BlogInterface,id:string)=>{
+// }
 exports.Blogservices = {
     createBlogDB,
     getAllBlogsDB,
     commentPostDB,
-    DeleteCommentDB
+    DeleteCommentDB,
+    getSingleBlogsDB
 };

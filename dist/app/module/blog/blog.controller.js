@@ -19,8 +19,6 @@ const blog_service_1 = require("./blog.service");
 const CreateBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
     const result = yield blog_service_1.Blogservices.createBlogDB(payload, req.user.id);
-    console.log(req.user.id);
-    console.log({ result });
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
@@ -33,7 +31,17 @@ const GetallBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) 
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Blogs retrived success",
+        message: "Blogs retrived successfully",
+        data: result
+    });
+}));
+const GetSingleBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield blog_service_1.Blogservices.getSingleBlogsDB(id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "Blog retrived successfully",
         data: result
     });
 }));
@@ -63,5 +71,6 @@ exports.BlogControllers = {
     CreateBlogController,
     GetallBlogsController,
     commentPostController,
-    commentDeleteController
+    commentDeleteController,
+    GetSingleBlogsController
 };

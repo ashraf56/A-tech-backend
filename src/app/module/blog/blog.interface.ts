@@ -15,6 +15,7 @@ export interface BlogInterface {
     subtitle:string
     category:Types.ObjectId
     blogType: string
+    upvote?:string
     comments?:Comments[]
 
 }

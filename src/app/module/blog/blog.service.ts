@@ -85,6 +85,12 @@ const getAllBlogsDB = async (query: any) => {
     const result = await allBLogs.modelQuery
     return result
 }
+const getSingleBlogsDB = async (id:string) => {
+
+    
+    const result = await  Blog.findById(id).populate('user').populate('category')
+    return result
+}
 
 const commentPostDB = async (payload: Partial<BlogInterface>, id: string, userid: string) => {
 
@@ -135,10 +141,15 @@ const DeleteCommentDB = async (commentId: string, id: string) => {
 }
 
 
+// const Updateblogs = async (payload:BlogInterface,id:string)=>{
+  
+// }
+
 
 export const Blogservices = {
     createBlogDB,
     getAllBlogsDB,
     commentPostDB,
-    DeleteCommentDB
+    DeleteCommentDB,
+    getSingleBlogsDB
 }
