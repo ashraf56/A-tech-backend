@@ -13,7 +13,7 @@ const globalErrorhandler = ((error, req, res, next) => {
     let errorSource = [
         {
             path: '',
-            message: "something error"
+            message: message
         }
     ];
     if (error instanceof zod_1.ZodError) {

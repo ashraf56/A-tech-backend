@@ -5,9 +5,11 @@ import { Blogservices } from "./blog.service";
 const CreateBlogController = tryCatchWrapper(
     async (req, res) => {
         const payload = req.body;
-       
+        
         const result = await Blogservices.createBlogDB(payload,req.user.id)
+console.log(req.user.id);
 
+console.log({result});
 
         res.status(httpStatus.OK).json({
             success: true,

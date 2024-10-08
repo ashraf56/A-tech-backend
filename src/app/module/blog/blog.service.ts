@@ -12,9 +12,14 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
     const newBlogdata: Partial<BlogInterface> = {}
 
+
     const userinfo = await User.findById(user)
     if (!userinfo) {
         return throwError('User not found')
+    }
+    const CategoryID = await Category.findById(payload.category)
+    if (!CategoryID) {
+        return throwError('CategoryID not found')
     }
 
     newBlogdata.title = payload.title
@@ -23,7 +28,10 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
     newBlogdata.image = payload.image
     newBlogdata.blogType = payload.blogType
     newBlogdata.user = userinfo?._id
-    newBlogdata.category = payload.category
+    newBlogdata.category = CategoryID?._id
+    newBlogdata.date = payload.date
+
+
 
     const session = await startSession()
 
@@ -32,6 +40,7 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
         session.startTransaction()
 
         const bloginfo = await Blog.create([newBlogdata], { session })
+
         if (!bloginfo) {
             throwError("Blog creation faild")
         }
@@ -43,6 +52,7 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
 
             },
             {
+                upsert: true,
                 new: true,
                 session
             }
@@ -51,21 +61,16 @@ const createBlogDB = async (payload: BlogInterface, user: string) => {
             throwError("Blog creation faild")
         }
 
-
-
-
-
         await session.commitTransaction()
         await session.endSession()
-
-
-
         return bloginfo
 
-    } catch (error) {
+    } catch (error: any) {
         await session.abortTransaction()
         await session.endSession()
-        throwError('Blog creation not success')
+        console.log(error);
+        throwError(error!._message!)
+
     }
 
 }
@@ -117,7 +122,7 @@ const DeleteCommentDB = async (commentId: string, id: string) => {
 
 
     const removeComment = await Blog.findByIdAndUpdate(id,
-        { $pull: { comments: { _id:commentId  } } }, { new: true }
+        { $pull: { comments: { _id: commentId } } }, { new: true }
     )
 
     if (!removeComment) {

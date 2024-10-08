@@ -6,10 +6,12 @@ import { BlogValidation } from "./blog.validation"
 import { BlogControllers } from "./blog.controller"
 
 const router = Router()
-router.put('/:id' , authMiddleware('user'),BlogControllers.commentPostController)
+
 
 router.post('/create-blog', authMiddleware('user'), validateRequest(BlogValidation.BlogCreateSchema), 
 BlogControllers.CreateBlogController)
+
+router.put('/:id' , authMiddleware('user'),BlogControllers.commentPostController)
 
 router.get('/', BlogControllers.GetallBlogsController)
 router.patch('/:id',authMiddleware('user','admin') , BlogControllers.commentDeleteController)

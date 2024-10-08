@@ -27,13 +27,18 @@ const createBlogDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
     if (!userinfo) {
         return (0, throwError_1.default)('User not found');
     }
+    const CategoryID = yield category_model_1.Category.findById(payload.category);
+    if (!CategoryID) {
+        return (0, throwError_1.default)('CategoryID not found');
+    }
     newBlogdata.title = payload.title;
     newBlogdata.subtitle = payload.subtitle;
     newBlogdata.description = payload.description;
     newBlogdata.image = payload.image;
     newBlogdata.blogType = payload.blogType;
     newBlogdata.user = userinfo === null || userinfo === void 0 ? void 0 : userinfo._id;
-    newBlogdata.category = payload.category;
+    newBlogdata.category = CategoryID === null || CategoryID === void 0 ? void 0 : CategoryID._id;
+    newBlogdata.date = payload.date;
     const session = yield (0, mongoose_1.startSession)();
     try {
         session.startTransaction();
@@ -44,6 +49,7 @@ const createBlogDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
         const BlogCategorycount = yield category_model_1.Category.findByIdAndUpdate({ _id: payload.category }, {
             $inc: { postCount: 1 }
         }, {
+            upsert: true,
             new: true,
             session
         });
@@ -57,7 +63,8 @@ const createBlogDB = (payload, user) => __awaiter(void 0, void 0, void 0, functi
     catch (error) {
         yield session.abortTransaction();
         yield session.endSession();
-        (0, throwError_1.default)('Blog creation not success');
+        console.log(error);
+        (0, throwError_1.default)(error._message);
     }
 });
 const getAllBlogsDB = (query) => __awaiter(void 0, void 0, void 0, function* () {

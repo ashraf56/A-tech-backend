@@ -19,6 +19,8 @@ const blog_service_1 = require("./blog.service");
 const CreateBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
     const result = yield blog_service_1.Blogservices.createBlogDB(payload, req.user.id);
+    console.log(req.user.id);
+    console.log({ result });
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
