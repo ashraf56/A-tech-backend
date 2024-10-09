@@ -48,8 +48,10 @@ const GetSingleBlogsController = tryCatchWrapper(
 const commentPostController = tryCatchWrapper(
     async (req, res) => {
         const { id } = req.params;
-        const data = req.body;
-        const result = await Blogservices.commentPostDB(data,id,req.user.id);
+        const payload = req.body;
+console.log(payload);
+
+        const result = await Blogservices.commentPostDB(payload,id,req.user.id);
 
         res.status(httpStatus.OK).json({
             success: true,

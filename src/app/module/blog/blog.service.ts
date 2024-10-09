@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { startSession } from "mongoose";
-import { BlogInterface } from "./blog.interface";
+import { BlogInterface, Comments } from "./blog.interface";
 import { Blog } from "./blog.model";
 import throwError from "../../utills/throwError";
 import { User } from "../user/user.model";
@@ -92,17 +92,10 @@ const getSingleBlogsDB = async (id:string) => {
     return result
 }
 
-const commentPostDB = async (payload: Partial<BlogInterface>, id: string, userid: string) => {
+const commentPostDB = async (payload: Comments, id: string, userid: string) => {
 
-    if (!payload.comments || !Array.isArray(payload.comments)) {
-        throwError('No comments provided ');
-    }
 
-    const commentData = payload.comments?.map(comment => ({
-        userid,
-        content: comment.content
-
-    }))
+    const commentData =   [{userid,content: payload.content}]
 
     const postAcomment = await Blog.findByIdAndUpdate(
         id,
@@ -119,8 +112,7 @@ const commentPostDB = async (payload: Partial<BlogInterface>, id: string, userid
     if (!postAcomment) {
         throwError('Blog post not found');
     }
-
-    // Return the updated blog with comments
+    
     return postAcomment;
 
 }

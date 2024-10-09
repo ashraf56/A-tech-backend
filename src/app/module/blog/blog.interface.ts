@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 
-export type Comments = {
+export interface Comments  {
     userid: Types.ObjectId
     content?: string
 }

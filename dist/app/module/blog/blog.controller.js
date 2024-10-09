@@ -47,8 +47,9 @@ const GetSingleBlogsController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, re
 }));
 const commentPostController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const data = req.body;
-    const result = yield blog_service_1.Blogservices.commentPostDB(data, id, req.user.id);
+    const payload = req.body;
+    console.log(payload);
+    const result = yield blog_service_1.Blogservices.commentPostDB(payload, id, req.user.id);
     res.status(http_status_1.default.OK).json({
         success: true,
         statusCode: http_status_1.default.OK,
