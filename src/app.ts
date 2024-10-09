@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import router from './app/routers/routes';
 import globalErrorhandler from './app/middleware/globalErrorhandler';
 import noRoutefound from './app/middleware/notfound';
-import httpStatus from 'http-status';
 
 
 const app = express()
