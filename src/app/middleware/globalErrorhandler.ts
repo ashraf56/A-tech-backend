@@ -8,7 +8,7 @@ import zodErrors from "../errors/zodErrors";
 
 const globalErrorhandler: ErrorRequestHandler = ((error, req, res, next) => {
     let statusCode = error.statusCode || 500
-    let message = error.message || "something error"
+    let message =  "something error"
     
 
 
