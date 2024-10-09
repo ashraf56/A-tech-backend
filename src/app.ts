@@ -17,10 +17,7 @@ app.use('/api', router)
 
 
 app.get('/', (req: Request, res: Response) => {
-  res.status(httpStatus.OK).json({
-    success: true,
-    message: 'A tech server',
-  });
+  res.send('Tech  service running..!')
 })
 
 app.use(globalErrorhandler)
