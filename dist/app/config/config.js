@@ -16,5 +16,6 @@ exports.default = {
     JWT_Refresh_token: process.env.JWT_Refresh_token,
     StoreID: process.env.aamarpaytest,
     SIGNETURE_KEY: process.env.SignatureKey,
-    AdminPass: process.env.admin_Password
+    AdminPass: process.env.admin_Password,
+    OriginUrl: process.env.originUrl
 };
