@@ -12,6 +12,7 @@ router.post('/create-blog', authMiddleware('user'), validateRequest(BlogValidati
 BlogControllers.CreateBlogController)
 
 router.put('/:id' , authMiddleware('user'),BlogControllers.commentPostController)
+router.patch('/:id/upvote',BlogControllers.upVoteCOntroller)
 
 router.get('/', BlogControllers.GetallBlogsController)
 router.get('/:id', BlogControllers.GetSingleBlogsController)

@@ -99,12 +99,24 @@ const DeleteCommentDB = (commentId, id) => __awaiter(void 0, void 0, void 0, fun
     const result = yield blog_model_1.Blog.findById(id);
     return result;
 });
-// const Updateblogs = async (payload:BlogInterface,id:string)=>{
-// }
+const Updateblogs = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const Post = yield blog_model_1.Blog.findById(id);
+    if (!Post) {
+        (0, throwError_1.default)('Post not availabel');
+    }
+    const newUpvotecount = Post === null || Post === void 0 ? void 0 : Post.upvote;
+    const upvotecount = yield blog_model_1.Blog.findByIdAndUpdate(id, {
+        $set: {
+            upvote: newUpvotecount + 1
+        }
+    }, { new: true });
+    return upvotecount;
+});
 exports.Blogservices = {
     createBlogDB,
     getAllBlogsDB,
     commentPostDB,
     DeleteCommentDB,
-    getSingleBlogsDB
+    getSingleBlogsDB,
+    Updateblogs
 };

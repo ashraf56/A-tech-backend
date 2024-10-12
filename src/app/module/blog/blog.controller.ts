@@ -62,6 +62,21 @@ const commentPostController = tryCatchWrapper(
 
     }
 )
+const upVoteCOntroller = tryCatchWrapper(
+    async (req, res) => {
+        const { id } = req.params;
+       
+        const result = await Blogservices.Updateblogs(id);
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "upvote successfully done",
+            data: result
+        })
+
+    }
+)
 const commentDeleteController = tryCatchWrapper(
     async (req, res) => {
         const { id } = req.params;
@@ -86,5 +101,6 @@ export const BlogControllers ={
     GetallBlogsController,
     commentPostController,
     commentDeleteController,
-    GetSingleBlogsController
+    GetSingleBlogsController,
+    upVoteCOntroller
 }

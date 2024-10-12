@@ -8,7 +8,7 @@ const zod_1 = require("zod");
 const zodErrors_1 = __importDefault(require("../errors/zodErrors"));
 const globalErrorhandler = ((error, req, res, next) => {
     let statusCode = error.statusCode || 500;
-    let message = "something error";
+    let message = error.message || "something error";
     // default error path
     let errorSource = [
         {

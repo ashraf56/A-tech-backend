@@ -56,6 +56,16 @@ const commentPostController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) 
         data: result
     });
 }));
+const upVoteCOntroller = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield blog_service_1.Blogservices.Updateblogs(id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "upvote successfully done",
+        data: result
+    });
+}));
 const commentDeleteController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const commentId = req.body;
@@ -72,5 +82,6 @@ exports.BlogControllers = {
     GetallBlogsController,
     commentPostController,
     commentDeleteController,
-    GetSingleBlogsController
+    GetSingleBlogsController,
+    upVoteCOntroller
 };

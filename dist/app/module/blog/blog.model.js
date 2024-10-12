@@ -16,7 +16,7 @@ const BlogSchema = new mongoose_1.Schema({
     blogType: { type: String, required: true, default: 'random' },
     subtitle: { type: String, required: true },
     title: { type: String, required: true },
-    upvote: { type: String, default: '0' }
+    upvote: { type: Number, default: '0' }
 }, {
     timestamps: true
 });

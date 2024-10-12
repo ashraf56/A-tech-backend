@@ -133,9 +133,27 @@ const DeleteCommentDB = async (commentId: string, id: string) => {
 }
 
 
-// const Updateblogs = async (payload:BlogInterface,id:string)=>{
+const Updateblogs = async (id:string)=>{
   
-// }
+const Post = await Blog.findById(id)
+
+if (!Post) {
+    throwError('Post not availabel')
+
+}
+ 
+const newUpvotecount = Post?.upvote as number 
+
+const upvotecount = await Blog.findByIdAndUpdate(id,{
+    $set:{
+        upvote: newUpvotecount + 1 
+    }
+},
+{new:true})
+
+return upvotecount
+
+}
 
 
 export const Blogservices = {
@@ -143,5 +161,6 @@ export const Blogservices = {
     getAllBlogsDB,
     commentPostDB,
     DeleteCommentDB,
-    getSingleBlogsDB
+    getSingleBlogsDB,
+    Updateblogs
 }

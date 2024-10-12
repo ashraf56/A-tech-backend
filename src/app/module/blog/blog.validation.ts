@@ -34,7 +34,7 @@ const BlogUpdateSchema = z.object({
         blogType: z.string().optional(),
         date: z.string().optional(),
         comments: z.array(commentSchema).optional(),
-        upvote:z.string().optional()
+        upvote:z.number().optional()
     })
 
 
