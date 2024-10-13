@@ -9,10 +9,11 @@ const router = Router()
 router.post('/signup', validateRequest(UserValidations.createUservalidationSchema),
     UserControllers.RegisterUserController)
 
-router.get('/:id', authMiddleware('admin', 'user'),
-    UserControllers.SingleUserController)
-router.put('/:id', authMiddleware('admin', 'user'),
-    UserControllers.updateUserController)
+router.get('/:id', authMiddleware('admin', 'user'), UserControllers.SingleUserController)
+
+router.get('/', authMiddleware('admin'), UserControllers.AllUsersController)
+
+router.put('/:id', authMiddleware('admin', 'user'), UserControllers.updateUserController)
 
 router.post('/login', validateRequest(UserValidations.LoginvalidationSchema), UserControllers.LoginUserController)
 

@@ -10,7 +10,7 @@ import config from './app/config/config';
 
 const app = express()
 
-app.use(cors({origin:[`${config.OriginUrl}`], credentials:true}))
+app.use(cors({ origin: [`${config.OriginUrl}`], credentials: true }))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api', router)

@@ -11,6 +11,6 @@ const CreateCategoryvalidationSchema = z.object({
 })
 
 
-export const Categoryvalidation  = {
+export const Categoryvalidation = {
     CreateCategoryvalidationSchema
 }

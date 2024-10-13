@@ -1,4 +1,4 @@
 export interface CategoryInterface {
-    name : string
+    name: string
     postCount: number
 }

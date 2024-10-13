@@ -3,8 +3,8 @@ import { z } from "zod";
 
 const commentSchema = z.object({
     body: z.object({
-    content: z.string().optional()
-})
+        content: z.string().optional()
+    })
 });
 
 
@@ -34,7 +34,7 @@ const BlogUpdateSchema = z.object({
         blogType: z.string().optional(),
         date: z.string().optional(),
         comments: z.array(commentSchema).optional(),
-        upvote:z.number().optional()
+        upvote: z.number().optional()
     })
 
 

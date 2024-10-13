@@ -19,9 +19,9 @@ const UserSchema = new Schema<UserInterface, Usermodels>({
         default: 'user'
     },
     password: { type: String, required: true },
-  
+
     address: { type: String },
-    profile:{type:String}
+    profile: { type: String }
 
 }, {
     timestamps: true
@@ -38,9 +38,9 @@ UserSchema.post('save', function (doc, next) {
 })
 
 
-UserSchema.statics.isMatchpass = async function name( inputPassword,hashpassword) {
+UserSchema.statics.isMatchpass = async function name(inputPassword, hashpassword) {
     return await bcrypt.compare(inputPassword, hashpassword)
 }
 
 
-export const User = model<UserInterface,Usermodels>('User', UserSchema)
+export const User = model<UserInterface, Usermodels>('User', UserSchema)

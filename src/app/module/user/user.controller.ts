@@ -25,7 +25,7 @@ const LoginUserController = tryCatchWrapper(
             statusCode: httpStatus.OK,
             message: "Logged in successfully",
             data: result,
-            
+
         })
     }
 )
@@ -59,6 +59,20 @@ const SingleUserController = tryCatchWrapper(
         })
     }
 )
+const AllUsersController = tryCatchWrapper(
+    async (req, res) => {
+
+        const result = await UsersService.AllUsers()
+
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "Users info rettrived successfully",
+            data: result,
+
+        })
+    }
+)
 
 
 
@@ -67,5 +81,6 @@ export const UserControllers = {
     RegisterUserController,
     LoginUserController,
     updateUserController,
-    SingleUserController
+    SingleUserController,
+    AllUsersController
 }

@@ -11,8 +11,8 @@ const Admin = {
 }
 
 
-const AdminDefault = async ()=>{
-    const isAdminexist = await User.findOne({role: Admin.role})
+const AdminDefault = async () => {
+    const isAdminexist = await User.findOne({ role: Admin.role })
 
     if (!isAdminexist) {
         await User.create(Admin);

@@ -85,17 +85,17 @@ const getAllBlogsDB = async (query: any) => {
     const result = await allBLogs.modelQuery
     return result
 }
-const getSingleBlogsDB = async (id:string) => {
+const getSingleBlogsDB = async (id: string) => {
 
-    
-    const result = await  Blog.findById(id).populate('user').populate('category')
+
+    const result = await Blog.findById(id).populate('user').populate('category')
     return result
 }
 
 const commentPostDB = async (payload: Comments, id: string, userid: string) => {
 
 
-    const commentData =   [{userid,content: payload.content}]
+    const commentData = [{ userid, content: payload.content }]
 
     const postAcomment = await Blog.findByIdAndUpdate(
         id,
@@ -112,7 +112,7 @@ const commentPostDB = async (payload: Comments, id: string, userid: string) => {
     if (!postAcomment) {
         throwError('Blog post not found');
     }
-    
+
     return postAcomment;
 
 }
@@ -133,28 +133,34 @@ const DeleteCommentDB = async (commentId: string, id: string) => {
 }
 
 
-const Updateblogs = async (id:string)=>{
-  
-const Post = await Blog.findById(id)
+const Updateblogs = async (id: string) => {
 
-if (!Post) {
-    throwError('Post not availabel')
+    const Post = await Blog.findById(id)
 
-}
- 
-const newUpvotecount = Post?.upvote as number 
+    if (!Post) {
+        throwError('Post not availabel')
 
-const upvotecount = await Blog.findByIdAndUpdate(id,{
-    $set:{
-        upvote: newUpvotecount + 1 
     }
-},
-{new:true})
 
-return upvotecount
+    const newUpvotecount = Post?.upvote as number
+
+    const upvotecount = await Blog.findByIdAndUpdate(id, {
+        $set: {
+            upvote: newUpvotecount + 1
+        }
+    },
+        { new: true })
+
+    return upvotecount
 
 }
+const getmyBlogs = async (id: string) => {
 
+    const result = await Blog.find({ user: id }).populate('user').populate('category')
+
+
+    return result
+}
 
 export const Blogservices = {
     createBlogDB,
@@ -162,5 +168,6 @@ export const Blogservices = {
     commentPostDB,
     DeleteCommentDB,
     getSingleBlogsDB,
-    Updateblogs
+    Updateblogs,
+    getmyBlogs
 }

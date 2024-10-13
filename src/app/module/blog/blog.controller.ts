@@ -5,8 +5,8 @@ import { Blogservices } from "./blog.service";
 const CreateBlogController = tryCatchWrapper(
     async (req, res) => {
         const payload = req.body;
-        
-        const result = await Blogservices.createBlogDB(payload,req.user.id)
+
+        const result = await Blogservices.createBlogDB(payload, req.user.id)
 
         res.status(httpStatus.OK).json({
             success: true,
@@ -18,7 +18,7 @@ const CreateBlogController = tryCatchWrapper(
 )
 const GetallBlogsController = tryCatchWrapper(
     async (req, res) => {
-       
+
         const result = await Blogservices.getAllBlogsDB(req.query)
 
 
@@ -32,7 +32,7 @@ const GetallBlogsController = tryCatchWrapper(
 )
 const GetSingleBlogsController = tryCatchWrapper(
     async (req, res) => {
-       const {id}=req.params
+        const { id } = req.params
         const result = await Blogservices.getSingleBlogsDB(id)
 
 
@@ -51,7 +51,7 @@ const commentPostController = tryCatchWrapper(
         const payload = req.body;
 
 
-        const result = await Blogservices.commentPostDB(payload,id,req.user.id);
+        const result = await Blogservices.commentPostDB(payload, id, req.user.id);
 
         res.status(httpStatus.OK).json({
             success: true,
@@ -65,7 +65,7 @@ const commentPostController = tryCatchWrapper(
 const upVoteCOntroller = tryCatchWrapper(
     async (req, res) => {
         const { id } = req.params;
-       
+
         const result = await Blogservices.Updateblogs(id);
 
         res.status(httpStatus.OK).json({
@@ -81,8 +81,8 @@ const commentDeleteController = tryCatchWrapper(
     async (req, res) => {
         const { id } = req.params;
         const commentId = req.body;
-        
-        const result = await Blogservices.DeleteCommentDB(commentId,id);
+
+        const result = await Blogservices.DeleteCommentDB(commentId, id);
 
         res.status(httpStatus.OK).json({
             success: true,
@@ -95,12 +95,26 @@ const commentDeleteController = tryCatchWrapper(
 )
 
 
+const getmyBlogController = tryCatchWrapper(
+    async (req, res) => {
 
-export const BlogControllers ={
+
+        const result = await Blogservices.getmyBlogs(req.user.id)
+        res.status(httpStatus.OK).json({
+            success: true,
+            statusCode: httpStatus.OK,
+            message: "My Blogs retrieved successfully",
+            data: result
+        })
+    }
+)
+
+export const BlogControllers = {
     CreateBlogController,
     GetallBlogsController,
     commentPostController,
     commentDeleteController,
     GetSingleBlogsController,
-    upVoteCOntroller
+    upVoteCOntroller,
+    getmyBlogController
 }

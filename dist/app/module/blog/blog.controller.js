@@ -77,11 +77,21 @@ const commentDeleteController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res
         data: result
     });
 }));
+const getmyBlogController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_service_1.Blogservices.getmyBlogs(req.user.id);
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "My Blogs retrieved successfully",
+        data: result
+    });
+}));
 exports.BlogControllers = {
     CreateBlogController,
     GetallBlogsController,
     commentPostController,
     commentDeleteController,
     GetSingleBlogsController,
-    upVoteCOntroller
+    upVoteCOntroller,
+    getmyBlogController
 };

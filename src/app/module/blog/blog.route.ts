@@ -8,15 +8,16 @@ import { BlogControllers } from "./blog.controller"
 const router = Router()
 
 
-router.post('/create-blog', authMiddleware('user'), validateRequest(BlogValidation.BlogCreateSchema), 
-BlogControllers.CreateBlogController)
+router.get('/my-blogs', authMiddleware('user'), BlogControllers.getmyBlogController)
+router.post('/create-blog', authMiddleware('user'), validateRequest(BlogValidation.BlogCreateSchema),
+    BlogControllers.CreateBlogController)
 
-router.put('/:id' , authMiddleware('user'),BlogControllers.commentPostController)
-router.patch('/:id/upvote',BlogControllers.upVoteCOntroller)
+router.put('/:id', authMiddleware('user'), BlogControllers.commentPostController)
+router.patch('/:id/upvote', BlogControllers.upVoteCOntroller)
 
 router.get('/', BlogControllers.GetallBlogsController)
 router.get('/:id', BlogControllers.GetSingleBlogsController)
-router.delete('/:id',authMiddleware('user','admin') , BlogControllers.commentDeleteController)
+router.delete('/:id', authMiddleware('user', 'admin'), BlogControllers.commentDeleteController)
 
 
 

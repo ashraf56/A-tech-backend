@@ -12,6 +12,11 @@ const RegisterUserDB = async (payload: UserInterface) => {
     const createUser = await User.create(payload)
     return createUser
 }
+const AllUsers = async () => {
+
+    const getUsers = await User.find()
+    return getUsers
+}
 
 
 const logIn = async (payload: UserInterface) => {
@@ -39,7 +44,7 @@ const logIn = async (payload: UserInterface) => {
 
 
     return {
-        users , token
+        users, token
     }
 
 }
@@ -66,5 +71,6 @@ export const UsersService = {
     RegisterUserDB,
     logIn,
     updateUserDB,
-    SingleUserDB
+    SingleUserDB,
+    AllUsers
 }

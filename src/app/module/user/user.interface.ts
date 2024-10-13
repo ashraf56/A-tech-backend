@@ -8,7 +8,7 @@ export interface UserInterface {
     role: 'user' | 'admin'
     password: string
     profile?: string
-    address?:string
+    address?: string
 }
 
 
@@ -16,5 +16,5 @@ export interface UserInterface {
 export type UserRoletypes = keyof typeof UserRoles
 
 export interface Usermodels extends Model<UserInterface> {
-    isMatchpass( inputPassword: string | unknown, hashpassword: string | unknown): Promise<boolean>
+    isMatchpass(inputPassword: string | unknown, hashpassword: string | unknown): Promise<boolean>
 }

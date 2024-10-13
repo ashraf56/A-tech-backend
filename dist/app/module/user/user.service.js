@@ -25,6 +25,10 @@ const RegisterUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* 
     const createUser = yield user_model_1.User.create(payload);
     return createUser;
 });
+const AllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    const getUsers = yield user_model_1.User.find();
+    return getUsers;
+});
 const logIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_model_1.User.findOne({ email: payload.email });
     if (!users) {
@@ -55,5 +59,6 @@ exports.UsersService = {
     RegisterUserDB,
     logIn,
     updateUserDB,
-    SingleUserDB
+    SingleUserDB,
+    AllUsers
 };

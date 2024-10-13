@@ -47,7 +47,7 @@ const getAllCategoryController = tryCatchWrapper(
 
 
 export const CategoryControllers = {
- CreateCategoryController,
- getAllCategoryController,
- SingleCategoryController
+    CreateCategoryController,
+    getAllCategoryController,
+    SingleCategoryController
 }

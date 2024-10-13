@@ -6,7 +6,7 @@ import { blogRoutes } from "../module/blog/blog.route";
 const router = Router();
 
 const routers = [
-   
+
     {
         path: '/blogs',
         route: blogRoutes
@@ -22,11 +22,11 @@ const routers = [
         route: categoryRoutes
 
     }
-    
+
 ]
 
 
- routers.forEach(r => router.use(r.path, r.route))
+routers.forEach(r => router.use(r.path, r.route))
 
 
 export default router;

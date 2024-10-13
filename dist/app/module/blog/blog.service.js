@@ -112,11 +112,16 @@ const Updateblogs = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }, { new: true });
     return upvotecount;
 });
+const getmyBlogs = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_model_1.Blog.find({ user: id }).populate('user').populate('category');
+    return result;
+});
 exports.Blogservices = {
     createBlogDB,
     getAllBlogsDB,
     commentPostDB,
     DeleteCommentDB,
     getSingleBlogsDB,
-    Updateblogs
+    Updateblogs,
+    getmyBlogs
 };

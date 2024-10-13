@@ -26,8 +26,8 @@ class QueryBuilder<T> {
     }
     filter() {
 
-        const objectQuries = { ...this?.query }  
-        const  removeQuery = ['searchTerm']
+        const objectQuries = { ...this?.query }
+        const removeQuery = ['searchTerm']
         removeQuery.forEach((q) => delete objectQuries[q])
 
         this.modelQuery = this.modelQuery.find(objectQuries as FilterQuery<T>)

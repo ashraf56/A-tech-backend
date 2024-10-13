@@ -14,9 +14,9 @@ const CreateCategory = async (payload: CategoryInterface) => {
     return createCategory
 
 }
-const SingleCategory = async (id:string) => {
+const SingleCategory = async (id: string) => {
 
-    const findSingleCategory = await Category.findById({ _id: id})
+    const findSingleCategory = await Category.findById({ _id: id })
 
     return findSingleCategory
 
